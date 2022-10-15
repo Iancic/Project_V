@@ -488,7 +488,7 @@ GameObject:
   - component: {fileID: 1860967367}
   - component: {fileID: 1860967366}
   m_Layer: 0
-  m_Name: Hexagon Flat-Top
+  m_Name: Hexagon Flat-Tops
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
