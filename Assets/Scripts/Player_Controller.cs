@@ -5,8 +5,9 @@ using UnityEngine;
 public class Player_Controller : MonoBehaviour
 {
     private Rigidbody2D rb;
-    public float multiplier, spedometer;
-    private int i, launched = 0;
+    public float multiplier = 100, spedometer;
+    public static int i;
+    public int launched = 0;
 
     void Start()
     {
