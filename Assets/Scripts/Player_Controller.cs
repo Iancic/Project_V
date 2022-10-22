@@ -5,8 +5,9 @@ using UnityEngine;
 public class Player_Controller : MonoBehaviour
 {
     private Rigidbody2D rb;
-    public float thrustlow, thrustmid, thrusthigh, spedometer;
+    public float multiplier, spedometer;
     private int i, launched = 0;
+
     void Start()
     {
         StartCoroutine(Launch());
@@ -23,11 +24,11 @@ public class Player_Controller : MonoBehaviour
             if (Input.GetKey(KeyCode.Q)){
                 launched = 1;
                 if (i<=25)
-                rb.AddForce(new Vector2 (0f, thrustlow));
+                rb.AddForce(new Vector2 (0f, i * multiplier));
                 else if (i>25 && i <=75)
-                rb.AddForce(new Vector2 (0f, thrustmid));
+                rb.AddForce(new Vector2 (0f, i * multiplier));
                 else if (i>75)
-                rb.AddForce(new Vector2 (0f, thrusthigh));
+                rb.AddForce(new Vector2 (0f, i * multiplier));
                 break;}
             yield return new WaitForSeconds(spedometer);}
         if (launched == 0) // if adaugat deorece la primul click iese din for dar al doilea nu este breaked
@@ -35,18 +36,17 @@ public class Player_Controller : MonoBehaviour
             for (i=100; i>0; i--){
             Debug.Log(i);
             if (Input.GetKey(KeyCode.Q)){
-                Debug.Log("MATA");
                 launched = 1;
                 if (i<=25)
-                rb.AddForce(new Vector2 (0f, thrustlow));
+                rb.AddForce(new Vector2 (0f, i * multiplier));
                 else if (i>25 && i <=75)
-                rb.AddForce(new Vector2 (0f, thrustmid));
+                rb.AddForce(new Vector2 (0f, i * multiplier));
                 else if (i>75)
-                rb.AddForce(new Vector2 (0f, thrusthigh));
+                rb.AddForce(new Vector2 (0f, i * multiplier));
                 break;}
             yield return new WaitForSeconds(spedometer);}
         }
-        } while ( launched == 0);
+        } while (launched == 0);
         
     }
 }
