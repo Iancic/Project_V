@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class TextBoost : MonoBehaviour
+public class Launch_UI : MonoBehaviour
 {
     public Text score;
 
@@ -14,6 +14,6 @@ public class TextBoost : MonoBehaviour
 
     void Update()
     {
-        score.text = "Power " + Player_Controller.i;
+        score.text = Player_Controller.i.ToString() + " newtons";
     }
 }

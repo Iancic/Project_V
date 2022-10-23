@@ -6,48 +6,43 @@ public class Player_Controller : MonoBehaviour
 {
     private Rigidbody2D rb;
     public float multiplier = 100, spedometer;
-    public static int i;
-    public int launched = 0;
+    public static int i, altitude,velo, charges = 2;
 
     void Start()
     {
         StartCoroutine(Launch());
         rb = GetComponent<Rigidbody2D>();
     }
+
+    void Update()
+    {
+        altitude = (int)transform.position.y;
+        velo = (int)rb.velocity.y;
+        Debug.Log(velo);
+    }
     
     IEnumerator Launch()
     {
-        launched = 0;
+        charges = 2;
         do
         {
         for (i=1; i<100; i++){
-            Debug.Log(i);
-            if (Input.GetKey(KeyCode.Q)){
-                launched = 1;
-                if (i<=25)
+            if (Input.GetKeyDown(KeyCode.Q) && charges != 0)
+            {
+                charges = charges - 1;
                 rb.AddForce(new Vector2 (0f, i * multiplier));
-                else if (i>25 && i <=75)
-                rb.AddForce(new Vector2 (0f, i * multiplier));
-                else if (i>75)
-                rb.AddForce(new Vector2 (0f, i * multiplier));
-                break;}
+            }
             yield return new WaitForSeconds(spedometer);}
-        if (launched == 0) // if adaugat deorece la primul click iese din for dar al doilea nu este breaked
         {
             for (i=100; i>0; i--){
-            Debug.Log(i);
-            if (Input.GetKey(KeyCode.Q)){
-                launched = 1;
-                if (i<=25)
+            if (Input.GetKeyDown(KeyCode.Q) && charges != 0)
+            {
+                charges = charges - 1;
                 rb.AddForce(new Vector2 (0f, i * multiplier));
-                else if (i>25 && i <=75)
-                rb.AddForce(new Vector2 (0f, i * multiplier));
-                else if (i>75)
-                rb.AddForce(new Vector2 (0f, i * multiplier));
-                break;}
+            }
             yield return new WaitForSeconds(spedometer);}
         }
-        } while (launched == 0);
+        }while (charges != 0);
         
     }
 }
