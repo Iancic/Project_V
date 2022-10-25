@@ -5,25 +5,39 @@ using UnityEngine;
 public class Player_Controller : MonoBehaviour
 {
     private Rigidbody2D rb;
-    public float multiplier = 100, spedometer;
-    public static int i, altitude,velo, charges = 2;
+    private Transform playertransform;
+    private float spedometer = 0.004f;
+    public static int i, altitude,velo, charges = 3, limit = 40, multiplier = 30;
+    // limit (the speed limit that the spaceship can withstand when ascending and descending)
+    // charges (the number of jumps the scapeship has)
+    // multiplier (the number multiplied with the power that thrusts away the spaceship)
 
     void Start()
     {
         StartCoroutine(Launch());
         rb = GetComponent<Rigidbody2D>();
+        playertransform = GetComponent<Transform>();
     }
 
     void Update()
-    {
+    {   
+        if(playertransform != null)
+        //verifica daca mai exista obiectul
+        {
+
         altitude = (int)transform.position.y;
         velo = (int)rb.velocity.y;
-        Debug.Log(velo);
+
+        if ( velo > limit)
+            Destroy(gameObject);
+        else if ( velo < -limit)
+            Destroy(gameObject);
+
+        }
     }
     
     IEnumerator Launch()
     {
-        charges = 2;
         do
         {
         for (i=1; i<100; i++){
