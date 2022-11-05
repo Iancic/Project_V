@@ -7,7 +7,7 @@ public class Player_Controller : MonoBehaviour
     private Rigidbody2D rb;
     private Transform playertransform;
     private float spedometer = 0.004f;
-    public static int i, altitude,velo, charges = 3, limit = 40, multiplier = 30;
+    public static int i, altitude,velo, charges = 1000, limit = 80, multiplier = 30;
     // limit (the speed limit that the spaceship can withstand when ascending and descending)
     // charges (the number of jumps the scapeship has)
     // multiplier (the number multiplied with the power that thrusts away the spaceship)
